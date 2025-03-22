@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>ADP - Tennis</title>
+  <style>
+   body {
+     font-family: "Helvetica Neue", Arial, sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #ADD8E6; 
+   }
+
+   header {
+     background-color: #00bfff;
+     color: #fff;
+     padding: 20px;
+     text-align: left;
+     display: flex;
+     align-items: center;
+   }
+
+   header img {
+     height: 100px;
+     margin-right: 20px;
+   }
+
+   nav {
+     background-color: #f4f4f4;
+     padding: 10px;
+     position: relative;
+     z-index: 10;
+   }
+
+   nav ul {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+   }
+
+   nav li {
+     display: inline;
+     margin-right: 20px;
+   }
+
+   nav a {
+     text-decoration: none;
+     color: #333;
+   } 
+
+   .container {
+     display: grid;
+     grid-template-columns: 250px 1fr 250px;
+     gap: 20px;
+     padding: 20px;
+   }
+
+   .sidebar {
+     background-color: #f0f0f0;
+     padding: 20px;
+   }
+
+   .main-content {
+     width: 90%;
+     max-width: 1200px;
+     margin: auto;
+     padding: 40px;
+     background-color: #fff;
+   }
+
+   .left-sidebar {
+     grid-column: 1;
+     background-color: ##48d9ed;
+   }
+
+   .left-sidebar h2 {
+     font-size: 1,5em;
+     font-weight: bold;
+     text-transform: uppercase;
+     color: white;
+     text-shadow: 0 0 5px #00bfff, 0 0 10px #0073e6, 0 0 15px #0044cc;
+   }
+
+   .right-sidebar {
+     grid-column: 3;
+   }
+
+   .right-sidebar h2 {
+     font-size: 1,5em;
+     font-weight: bold;
+     text-transform: uppercase;
+     color: white;
+     text-shadow: 0 0 5px #00bfff, 0 0 10px #0073e6, 0 0 15px #0044cc;
+     text-align: center;
+    }
+
+   .hero-card {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: white;
+     padding: 40px 20px;
+     margin-top: 20px;
+   }
+
+    .news-section {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .news-card img {
+      width: 100%;
+      border-radius: 0px;
+    }
+
+    .news-card h3 {
+      margin-top: 10px;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+   .hero h1 {
+     font-size: 3em;
+     margin-bottom: 20px;
+     display: none;
+   }
+
+   .hero p {
+     font-size: 1.2em;
+     display: none;
+   }
+
+   .content {
+     padding: 20px;
+   }
+
+   .welcome {
+     Text-align: center
+   }
+
+   h1 {
+     font-size: 3em;
+     font-weight: bold;
+     text-transform: uppercase;
+     color: white;
+     text-shadow: 0 0 5px #00bfff, 0 0 10px #0073e6, 0 0 15px #0044cc;
+   }
+
+   .news-card {
+     width: 270px;
+     border-radius: 16px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+     overflow: hidden;
+     background-color: #00bfff;
+     font-family: 'Arial', sans-serif;
+     transition: transform 0.3s ease;
+   }
+
+   .news-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+   }
+
+   .news-image img {
+     width: 100%;
+     height: 200px;
+     object-fit: cover;
+     display: block;
+     border-top-left-radius: 16px;
+     border-top-right-radius: 16px;
+   }
+
+   .slide h3 {
+      font-size: 26px;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+   .news-title {
+      padding: 16px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 6px #000;
+   }
+
+    button {
+      background: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #00bfff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #00bfff);
+      transform: scale(1.05);
+    }
+
+    /* Stile base per il menu */
+    nav {
+      position: relative;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    nav li {
+      display: inline-block;
+      margin-right: 20px;
+      position: relative;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      background-color: #00bfff;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Dropdown menu */
+    nav .dropdown {
+      position: absolute;
+      background-color: white;
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+      top: 100%;
+      left: 0;
+      width: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+
+      /* Nascondiamo il menu e lo rendiamo pronto per l'animazione */
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: height 0.4s ease-out, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Mostrare il menu con animazione */
+    nav li:hover > .dropdown {
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Effetto progressivo sulle voci del menu */
+    nav .dropdown li {
+      padding: 12px 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-size: 1em;
+      font-weight: bold;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    /* Quando il menu è visibile, le voci appaiono in sequenza */
+    nav li:hover > .dropdown li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Effetto progressivo per ogni voce del menu */
+    nav li:hover > .dropdown li:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+    nav li:hover > .dropdown li:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+    nav li:hover > .dropdown li:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+    nav li:hover > .dropdown li:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    nav .dropdown li a {
+      color: #333;
+      display: block;
+      width: 100%;
+      padding: 10px 15px;
+    }
+
+    nav .dropdown li a:hover {
+      color: white;
+    }
+
+    .slideshow-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .slideshow {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      height: 500px;
+      background-color: #00bfff;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 0;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 85%;
+      object-fit: cover;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+
+    .caption {
+      background-color: #00bfff;
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      height: 7%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .thumbnail {
+      width: 100px;
+      height: 60px;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border 0.3s ease;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumbnail.active {
+      border-color: #00bfff;
+    }
+    
+    .ranking-container {
+      max-width: 400px;
+      margin: auto;
+      margin-left: 0;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .ranking-header {
+      padding: 16px;
+      background-color: #00bfff;
+      font-size: 20px;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .ranking-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .ranking-row:last-child {
+      border-bottom: none;
+    }
+
+    .ranking-position {
+      width: 30px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .ranking-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .ranking-name {
+      flex-grow: 1;
+      font-size: 13px;
+      color: #1a1aff;
+      display: flex;
+      align-items: center;
+    }
+
+    .ranking-name img.flag {
+      width: 18px;
+      height: 12px;
+      margin-left: 6px;
+    }
+
+    .ranking-points {
+      font-weight: bold;
+      color: #000;
+      font-size: 13px;
+    }
+
+  </style>
+ </head>
+ <body>
+  <header>
+    <img src="LogoADP.png" alt="Logo ADP"> <h1>ADP - Tennis</h1>
+  </header>
+
+  <nav>
+  <ul>
+    <li><a href="#">Notizie</a></li>
+    <li><a href="#">Profili giocatori</a></li>
+    <li><a href="#">Tornei Grande Slam</a>
+      <ul class="dropdown">
+        <li><a href="#">Australian Open</a></li>
+        <li><a href="#">Roland Garros</a></li>
+        <li><a href="#">Wimbledon</a></li>
+        <li><a href="#">US Open</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Classifiche ADP</a></li>
+    <li><a href="#">Regolamento</a></li>
+    <li><a href="#">La Nostra Storia</a></li>
+    <li><a href="#">Contatti</a></li>
+  </ul>
+</nav>
+
+  <div class="container">
+    <div class="sidebar left-sidebar">
+      <h2>Classifica ADP</h2>
+      <ul>
+        <li>1) Andrea Terranova</li>
+        <li>2) Saverio Strazzulli</li>
+        <li>3) Matteo Antonucci</li>
+        <li>...</li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <div class="welcome">
+        <h1>Benvenuti su ADP - Tennis</h1>
+      </div>
+      <br>
+      <div class="slideshow-container">
+        <div class="slideshow">
+      <div class="slide active">
+        <img src="RogerFedererSfondo1.jpg" alt="Slide 1">
+        <div class="caption">Roger Federer</div>
+      </div>
+      <div class="slide">
+        <img src="RafaelNadalSfondo.jpg" alt="Slide 2">
+        <div class="caption">Rafael Nadal</div>
+      </div>
+      <div class="slide">
+        <img src="NovakDjokovicSfondo.jpg.webp" alt="Slide 3">
+        <div class="caption">Novak Djokovic</div>
+      </div>
+    </div>
+
+    <div class="thumbnails">
+      <div class="thumbnail active" onclick="selectSlide(0)">
+        <img src="RogerFedererSfondo1.jpg" alt="Thumb 1">
+      </div>
+      <div class="thumbnail" onclick="selectSlide(1)">
+        <img src="RafaelNadalSfondo.jpg" alt="Thumb 2">
+      </div>
+      <div class="thumbnail" onclick="selectSlide(2)">
+        <img src="NovakDjokovicSfondo.jpg.webp" alt="Thumb 3">
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="ranking-container">
+    <div class="ranking-header">ADP Rankings - Singles</div>
+
+    <div class="ranking-row">
+      <div class="ranking-position">1</div>
+      <img class="ranking-avatar" src="https://i.imgur.com/3WzFhYw.png" alt="Sinner">
+      <div class="ranking-name">Andrea Terranova <img class="flag" src="https://flagcdn.com/w40/it.png" alt="IT"></div>
+      <div class="ranking-points">16.120</div>
+    </div>
+
+    <div class="ranking-row">
+      <div class="ranking-position">2</div>
+      <img class="ranking-avatar" src="https://i.imgur.com/4U7lrtd.png" alt="Zverev">
+      <div class="ranking-name">Saverio Strazzulli <img class="flag" src="https://flagcdn.com/w40/it.png" alt="IT"></div>
+      <div class="ranking-points">14.900</div>
+    </div>
+
+    <div class="ranking-row">
+      <div class="ranking-position">3</div>
+      <img class="ranking-avatar" src="https://i.imgur.com/YR6BtQv.png" alt="Alcaraz">
+      <div class="ranking-name">Matteo Antonucci <img class="flag" src="https://flagcdn.com/w40/it.png" alt="IT"></div>
+      <div class="ranking-points">13.530</div>
+    </div>
+  </div>
+  <br>
+
+      <div class="news-section">
+        <div class="news-card">
+          <div class="news-image">
+            <img src="RogerFedererSfondo.jpg" alt="News Image">
+          </div>
+          <div class="news-title">
+            Federer fires into Top 10 with Indian Wells triumph
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-image">
+            <img src="JannikSinnerSfondo.jpg" alt="News Image">
+          </div>
+          <div class="news-title">
+            Sinner fires into Top 10 with Indian Wells triumph
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-image">
+            <img src="CarlosAlcarazSfondo.avif" alt="News Image">
+          </div>
+          <div class="news-title">
+            Alcaraz fires into Top 10 with Indian Wells triumph
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <h2>Ultime notizie</h2>
+        <p>Qui verranno visualizzate le ultime notizie sul tennis.</p>
+        <h2>Prossimi tornei</h2>
+        <p>Qui verranno visualizzati i prossimi tornei di tennis.</p>
+      </div>
+    </div>
+
+    <div class="sidebar right-sidebar">
+      <h2>Prossimi Tornei</h2>
+      <ul>
+        <li>Indian Wells</li>
+        <li>Miami</li>
+        <li>...</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const slides = document.querySelectorAll('.slide');
+      const thumbnails = document.querySelectorAll('.thumbnail');
+      let currentSlide = 0;
+      let slideInterval;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.remove('active');
+          thumbnails[i].classList.remove('active');
+        });
+        slides[index].classList.add('active');
+        thumbnails[index].classList.add('active');
+        currentSlide = index;
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      function selectSlide(index) {
+        clearInterval(slideInterval);
+        showSlide(index);
+        startSlideAuto();
+      }
+
+      function startSlideAuto() {
+        slideInterval = setInterval(nextSlide, 4000);
+      }
+
+      // Avvia slideshow
+      showSlide(0);
+      startSlideAuto();
+    });
+  </script>
+</body>
+
+</html>

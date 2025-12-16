@@ -1,1 +1,307 @@
+:root {
+  --primary: #00bfff;
+  --bg: #f5faff;
+  --radius: 16px;
+  --shadow: 0 6px 20px rgba(0,0,0,.15);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+/* HEADER */
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: var(--primary);
+  color: white;
+}
+
+.logo {
+  height: 80px;
+}
+
+/* NAV */
+.main-nav {
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  padding: 10px 20px;
+  margin: 0;
+  gap: 20px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+/* HERO */
+.hero {
+  max-width: 1200px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.slideshow {
+  position: relative;
+  height: 420px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background: rgba(0,0,0,.5);
+  color: white;
+  text-align: center;
+}
+
+.hero-cta h2 {
+  font-size: 2rem;
+}
+
+.hero-cta button {
+  margin-top: 20px;
+  padding: 14px 26px;
+  border-radius: 30px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* COMPETITION */
+.competition {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 420px 1fr; /* 👈 CHIAVE */
+  gap: 30px;
+}
+
+.ranking-card,
+.h2h-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  min-width: 380px;
+}
+
+.ranking-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.ranking-row img {
+  width: 30px;
+  border-radius: 50%;
+}
+
+/* NEWS */
+.news {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 270px);
+  justify-content: center;
+  gap: 24px;
+}
+
+.news-card {
+  background: var(--primary);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: white;
+  box-shadow: var(--shadow);
+  width: 270px;     
+  min-width: 270px;
+}
+
+.news-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.news-card h4 {
+  padding: 15px;
+}
+
+/* FOOTER */
+.site-footer {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .competition {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ranking-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ranking-item {
+  display: grid;
+  grid-template-columns: 30px 40px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background .3s, transform .2s;
+}
+
+.ranking-item:hover {
+  background: #f0f8ff;
+  transform: translateX(4px);
+}
+
+.ranking-item img {
+  width: 32px;
+  border-radius: 50%;
+}
+
+.ranking-item .pos {
+  font-weight: bold;
+}
+
+.ranking-item .points {
+  font-weight: bold;
+}
+
+.ranking-item.first {
+  background: linear-gradient(90deg, gold, #fff8c6);
+}
+
+.ranking-item.second {
+  background: linear-gradient(90deg, silver, #f5f5f5);
+}
+
+.ranking-item.third {
+  background: linear-gradient(90deg, #cd7f32, #f8e2c9);
+}
+
+.h2h-players {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.h2h-players .player {
+  text-align: center;
+}
+
+.h2h-players img {
+  width: 60px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.vs {
+  font-weight: bold;
+  opacity: .6;
+}
+
+.h2h-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  text-align: center;
+  font-size: .9rem;
+}
+
+.h2h-stats span {
+  display: block;
+  opacity: .6;
+}
+
+.secondary.full {
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+  .competition {
+    grid-template-columns: 1fr;
+  }
+
+  .ranking-card,
+  .h2h-card {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .news-card {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+
 
